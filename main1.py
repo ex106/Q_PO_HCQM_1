@@ -3,6 +3,8 @@ from dimod import ConstrainedQuadraticModel, Binary, Real, QuadraticModel
 import numpy as np
 import pandas as pd
 import yfinance as yf
+from dwave.cloud import Client
+client = Client(token='YOUR-API-TOKEN')
 
 def get_stock_data(tickers, period='1y'):
     """Fetch historical stock data"""
@@ -101,7 +103,7 @@ def create_portfolio_cqm(mu, sigma, skew, kurt, risk_aversion=1,
 def solve_portfolio_optimization():
     # Sample assets
     tickers = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META', 
-              'TSLA', 'NVDA', 'JPM', 'V', 'PG']
+            'TSLA', 'NVDA', 'JPM', 'V', 'PG']
     
     print("Fetching stock data...")
     data = get_stock_data(tickers)
